@@ -7,8 +7,6 @@
       :value="searchText"
       placeholder="도시 이름을 입력하세요"
       @input="handleInput"
-      @compositionstart="isComposing = true"
-      @compositionend="handleCompositionEnd"
     />
 
     <p>
@@ -44,10 +42,6 @@ const handleInput = (event) => {
   searchText.value = event.target.value
 }
 
-const handleCompositionEnd = (event) => {
-  isComposing.value = false
-  searchText.value = event.target.value
-}
 
 const filteredWeatherList = computed(() => {
   const keyword = searchText.value.trim()

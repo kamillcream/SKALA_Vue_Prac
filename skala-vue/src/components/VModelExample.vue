@@ -1,24 +1,65 @@
 <template>
   <div>
-    <h2>과제 3: 양방향 바인딩 및 한글 처리 (:value, @input)</h2>
-    <input type="text" v-model="text1" placeholder="여기에 입력하세요" />
+    <h2>도시 검색</h2>
+
+    <input
+      type="text"
+      :value="searchText"
+      placeholder="도시 이름을 입력하세요"
+      @input="handleInput"
+      @compositionstart="isComposing = true"
+      @compositionend="handleCompositionEnd"
+    />
+
     <p>
-    입력된 값: <strong>{{ text1 }}</strong>
+      검색어: <strong>{{ searchText }}</strong>
     </p>
-    <input type="text" :value="text2" @input="(e) => (text2 = e.target.value)" placeholder="원리 파악용 입력창" />
-    <p>
-    입력된 값: <strong>{{ text2 }}</strong>
-    </p>
+
+    <ul v-if="filteredWeatherList.length">
+      <li v-for="item in filteredWeatherList" :key="item.id">
+        {{ item.name }} / {{ item.temp }}℃ / {{ item.status }}
+      </li>
+    </ul>
+
+    <p v-else>검색 결과가 없습니다.</p>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const text1 = ref('') 
-const text2 = ref('') 
+import { computed, ref } from 'vue'
 
+const searchText = ref('')
+const isComposing = ref(false)
+
+const weatherList = ref([
+  { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
+  { id: 'city_02', name: '수원', temp: 24, status: '비' },
+  { id: 'city_03', name: '부산', temp: 26, status: '구름' },
+])
+
+const handleInput = (event) => {
+  // 한글이 조합 중이면 값을 갱신하지 않음
+  if (isComposing.value) return
+
+  searchText.value = event.target.value
+}
+
+const handleCompositionEnd = (event) => {
+  isComposing.value = false
+  searchText.value = event.target.value
+}
+
+const filteredWeatherList = computed(() => {
+  const keyword = searchText.value.trim()
+
+  if (!keyword) {
+    return weatherList.value
+  }
+
+  return weatherList.value.filter(
+    (item) =>
+      item.name.includes(keyword) ||
+      item.status.includes(keyword)
+  )
+})
 </script>
-
-<style>
-
-</style>

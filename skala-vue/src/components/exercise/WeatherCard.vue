@@ -26,11 +26,11 @@ const props = defineProps({
 })
 
 const onClickDetail = () => {
-  emit('detail', props.city.name)
+  emit('detail', props.city.id)
 }
 
 const onSelectCard = () => {
-  emit('select', props.city.name)
+  emit('select', props.city.id)
 }
 </script>
 

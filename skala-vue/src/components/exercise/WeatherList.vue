@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import WeatherCard from './WeatherCard.vue'
 const props = defineProps({
     filteredWeatherList: {
@@ -26,11 +25,9 @@ const handleSelectCard = (name) => {
   emit('select', name)
 }
 
-console.log(props)
-
 </script>
 
-<style>
+<style scoped>
 .weather-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

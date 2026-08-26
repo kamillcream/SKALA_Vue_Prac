@@ -7,7 +7,7 @@
     <template #weather>
       <WeatherList
         :filtered-weather-list="filteredWeatherList"
-        @detail="handleDetailEvent"
+        @detail="moveToDetail"
         @select="handleSelectCard"
       />
     </template>
@@ -15,13 +15,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import BaseDashboardCard from './BaseDashboardCard.vue'
-import SearchBar from './SearchBar.vue'
-import WeatherList from './WeatherList.vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import BaseDashboardCard from '@/components/exercise/BaseDashboardCard.vue'
+import SearchBar from '@/components/exercise/SearchBar.vue'
+import WeatherList from '@/components/exercise/WeatherList.vue'
 
-const route = useRoute()
+const router = useRouter()
 
 const weatherList = ref([
   { id: 'city_01', name: '서울', temp: 28, status: '맑음', isFavorite: false, isDetailShow: false },
@@ -33,28 +33,13 @@ const weatherList = ref([
 
 const filteredWeatherList = ref([...weatherList.value])
 
-onMounted(() => {
-  const cityId = route.params.cityId
-
-  if (cityId) {
-    filteredWeatherList.value = weatherList.value.filter((item) => item.id === cityId)
-  }
-})
-
-const handleDetailEvent = (name) => {
-  const detailedItem = weatherList.value.find((item) => item.name === name)
-
-  if (detailedItem) {
-    detailedItem.isDetailShow = !detailedItem.isDetailShow
-  }
+const moveToDetail = (id) => {
+  router.push('/weather/' + id)
 }
 
-const handleSelectCard = (name) => {
-  const selectedItem = weatherList.value.find((item) => item.name === name)
-
-  if (selectedItem) {
-    selectedItem.isFavorite = !selectedItem.isFavorite
-  }
+const handleSelectCard = (id) => {
+  const selectedItem = weatherList.value.find((item) => item.id === id)
+  if (selectedItem) selectedItem.isFavorite = !selectedItem.isFavorite
 }
 
 const handleSearch = (keyword) => {
@@ -63,16 +48,8 @@ const handleSearch = (keyword) => {
     return
   }
 
-  return (filteredWeatherList.value = weatherList.value.filter(
+  filteredWeatherList.value = weatherList.value.filter(
     (item) => item.name.includes(keyword) || item.status.includes(keyword),
-  ))
+  )
 }
 </script>
-
-<style scoped>
-@media (max-width: 640px) {
-  .weather-list {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

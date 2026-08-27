@@ -96,8 +96,14 @@ body {
 }
 
 @media (max-width: 640px) {
-  .app-shell { padding-top: 24px; }
-  .practice-section { padding: 20px; }
+  .app-shell {
+    padding-top: 24px;
+  }
+  .practice-section {
+    padding: 20px;
+  }
 }
 
-[v-cloak] { display: none; }
+[v-cloak] {
+  display: none;
+}

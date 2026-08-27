@@ -119,7 +119,8 @@ import { ElCard, ElTag, ElText, ElImage, ElStatistic } from 'element-plus'
 
 const mode = ref('리스트 검색')
 
-const API_KEY = `111b3fda6bc93704bbe4b4c299176bee`
+const currentApiUrl = import.meta.env.GEOCODING_API_URL
+const currentApiKey = import.meta.env.WEATHER_API_KEY
 const weather = ref(null)
 
 const router = useRouter()
@@ -166,11 +167,11 @@ const handleRead = async () => {
   }
 
   try {
-    const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+    const response = await axios.get(currentApiUrl, {
       params: {
         lat: latlonResult.value.latitude,
         lon: latlonResult.value.longitude,
-        appid: API_KEY,
+        appid: currentApiKey,
         units: 'metric',
         lang: 'kr',
       },

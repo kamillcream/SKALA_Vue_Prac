@@ -42,7 +42,6 @@ const handleInput = (event) => {
   searchText.value = event.target.value
 }
 
-
 const filteredWeatherList = computed(() => {
   const keyword = searchText.value.trim()
 
@@ -51,9 +50,7 @@ const filteredWeatherList = computed(() => {
   }
 
   return weatherList.value.filter(
-    (item) =>
-      item.name.includes(keyword) ||
-      item.status.includes(keyword)
+    (item) => item.name.includes(keyword) || item.status.includes(keyword),
   )
 })
 </script>

@@ -3,13 +3,7 @@
     <form @submit.prevent="handleForm">
       <div>
         <label for="name">이름</label>
-        <input
-          id="name"
-          v-model="form.name"
-          type="text"
-          placeholder="이름을 입력하세요"
-          required
-        />
+        <input id="name" v-model="form.name" type="text" placeholder="이름을 입력하세요" required />
       </div>
 
       <div>
@@ -60,13 +54,13 @@
 </template>
 
 <script setup>
-import { reactive } from "vue"
+import { reactive } from 'vue'
 
 const form = reactive({
-  name: "",
+  name: '',
   age: null,
-  satisfaction: "",
-  opinion: "",
+  satisfaction: '',
+  opinion: '',
 })
 
 const handleForm = () => {
@@ -74,12 +68,12 @@ const handleForm = () => {
     `${form.name}님의 설문조사가 제출되었습니다.\n` +
       `나이: ${form.age}\n` +
       `만족도: ${form.satisfaction}\n` +
-      `의견: ${form.opinion || "없음"}`
+      `의견: ${form.opinion || '없음'}`,
   )
 }
 
 const handleClick = () => {
-  alert("버튼이 클릭되었습니다.")
+  alert('버튼이 클릭되었습니다.')
 }
 </script>
 

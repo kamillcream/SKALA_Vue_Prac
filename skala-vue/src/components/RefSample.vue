@@ -1,28 +1,23 @@
 <template>
   <div>
-    <p> {{ number }} </p>
+    <p>{{ number }}</p>
     <button @click="increaseNumber">증가</button>
     <button @click="decreaseNumber">감소</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const number = ref(0);
+const number = ref(0)
 
 const increaseNumber = () => {
-    number.value++;
+  number.value++
 }
-
 
 const decreaseNumber = () => {
-    number.value--;
+  number.value--
 }
-
-
 </script>
 
-<style>
-
-</style>
+<style></style>

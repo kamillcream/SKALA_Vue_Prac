@@ -21,6 +21,7 @@ import axios from 'axios'
 const location = ref('')
 const result = ref(null)
 const errorMessage = ref('')
+const currentApiUrl = import.meta.env.GEOCODING_API_URL
 
 const searchLocation = async () => {
   if (!location.value.trim()) {
@@ -31,7 +32,7 @@ const searchLocation = async () => {
   try {
     errorMessage.value = ''
 
-    const response = await axios.get('https://geocoding-api.open-meteo.com/v1/search', {
+    const response = await axios.get(currentApiUrl, {
       params: {
         name: location.value.trim(),
         count: 1,

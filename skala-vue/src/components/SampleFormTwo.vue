@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 
 // v-model Modifiers 실습용 반응형 변수
-const lazyText = ref("")
-const age = ref("")
-const userEmail = ref("")
-const price = ref("")
+const lazyText = ref('')
+const age = ref('')
+const userEmail = ref('')
+const price = ref('')
 </script>
 
 <template>
@@ -15,11 +15,7 @@ const price = ref("")
     <!-- 1) .lazy 수식어 실습 -->
     <section>
       <h3>1) .lazy 수식어(change 이벤트 시점에 반영)</h3>
-      <input
-        v-model.lazy="lazyText"
-        type="text"
-        placeholder="입력 후 Enter 또는 외부 클릭"
-      />
+      <input v-model.lazy="lazyText" type="text" placeholder="입력 후 Enter 또는 외부 클릭" />
       <p>
         실시간이 아닌 확정된 값:
         <strong>{{ lazyText }}</strong>
@@ -29,11 +25,7 @@ const price = ref("")
     <!-- 2) .number 수식어 실습 -->
     <section>
       <h3>2) .number 수식어(Number 타입 자동 형 변환)</h3>
-      <input
-        v-model.number="age"
-        type="text"
-        placeholder="나이를 입력하세요"
-      />
+      <input v-model.number="age" type="text" placeholder="나이를 입력하세요" />
       <p>
         입력된 값:
         <strong>{{ age }}</strong>
@@ -47,11 +39,7 @@ const price = ref("")
     <!-- 3) .trim 수식어 실습 -->
     <section>
       <h3>3) .trim 수식어(양 끝 공백 자동 제거)</h3>
-      <input
-        v-model.trim="userEmail"
-        type="text"
-        placeholder="앞뒤 공백을 포함해 입력해 보세요"
-      />
+      <input v-model.trim="userEmail" type="text" placeholder="앞뒤 공백을 포함해 입력해 보세요" />
       <p>
         공백이 제거된 값:
         <strong>"{{ userEmail }}"</strong>

@@ -4,10 +4,7 @@
 
     <div>
       <h3>1) Textarea (장문 텍스트)</h3>
-      <textarea
-        v-model="comment"
-        placeholder="의견을 남겨주세요"
-      ></textarea>
+      <textarea v-model="comment" placeholder="의견을 남겨주세요"></textarea>
       <p>
         데이터 상태: <span>{{ comment }}</span>
       </p>
@@ -74,13 +71,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 
-const comment = ref("")
+const comment = ref('')
 const isAgreed = ref(false)
 const favoriteFruits = ref([])
-const gender = ref("")
-const selectedCar = ref("")
+const gender = ref('')
+const selectedCar = ref('')
 </script>
 
 <style>

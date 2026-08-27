@@ -9,14 +9,9 @@
   </header>
 
   <main class="app-shell">
-    <!-- <RouterView /> -->
-    <StoreCounter />
+    <RouterView />
   </main>
 </template>
-
-<script setup>
-import StoreCounter from './components/StoreCounter.vue'
-</script>
 
 <style scoped>
 .app-header {

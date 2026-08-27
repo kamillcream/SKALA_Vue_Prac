@@ -46,7 +46,9 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.12);
 }
 
-input::placeholder { color: #64748b; }
+input::placeholder {
+  color: #64748b;
+}
 
 button {
   cursor: pointer;
@@ -65,7 +67,11 @@ button {
 }
 
 @media (max-width: 480px) {
-  .search-bar { grid-template-columns: 1fr; }
-  button { padding: 11px 18px; }
+  .search-bar {
+    grid-template-columns: 1fr;
+  }
+  button {
+    padding: 11px 18px;
+  }
 }
 </style>

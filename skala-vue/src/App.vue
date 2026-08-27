@@ -9,9 +9,14 @@
   </header>
 
   <main class="app-shell">
-    <RouterView />
+    <!-- <RouterView /> -->
+    <StoreCounter />
   </main>
 </template>
+
+<script setup>
+import StoreCounter from './components/StoreCounter.vue'
+</script>
 
 <style scoped>
 .app-header {
@@ -24,12 +29,31 @@
   padding: 22px 0 4px;
 }
 
-.brand { color: #f8fafc; font-size: 1.1rem; font-weight: 800; }
-nav { display: flex; flex-wrap: wrap; gap: 6px; }
-nav a { border-radius: 8px; padding: 7px 11px; color: #94a3b8; font-weight: 650; }
-nav a.router-link-exact-active { color: #052e25; background: #6ee7b7; }
+.brand {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+nav a {
+  border-radius: 8px;
+  padding: 7px 11px;
+  color: #94a3b8;
+  font-weight: 650;
+}
+nav a.router-link-exact-active {
+  color: #052e25;
+  background: #6ee7b7;
+}
 
 @media (max-width: 600px) {
-  .app-header { align-items: flex-start; flex-direction: column; }
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 </style>

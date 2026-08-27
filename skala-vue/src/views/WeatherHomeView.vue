@@ -119,8 +119,10 @@ import { ElCard, ElTag, ElText, ElImage, ElStatistic } from 'element-plus'
 
 const mode = ref('리스트 검색')
 
-const geocodingApiUrl = import.meta.env.VITE_GEOCODING_API_URL
-const currentApiUrl = import.meta.env.VITE_WEATHER_API_URL
+const geocodingApiUrl =
+  import.meta.env.VITE_GEOCODING_API_URL || 'https://geocoding-api.open-meteo.com/v1/search'
+const currentApiUrl =
+  import.meta.env.VITE_WEATHER_API_URL || 'https://api.openweathermap.org/data/2.5/weather'
 const currentApiKey = import.meta.env.VITE_WEATHER_API_KEY
 const weather = ref(null)
 
@@ -191,11 +193,6 @@ const handleRead = async () => {
 }
 
 const handleGeoCodeApiSearch = async (keyword) => {
-  if (!geocodingApiUrl) {
-    console.error('Geocoding API 환경변수가 설정되지 않았습니다.')
-    return
-  }
-
   try {
     console.log(keyword)
     const response = await axios.get(geocodingApiUrl, {

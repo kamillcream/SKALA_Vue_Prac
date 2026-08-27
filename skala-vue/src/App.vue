@@ -9,9 +9,13 @@
   </header>
 
   <main class="app-shell">
-    <RouterView />
+    <!-- <RouterView /> -->
+    <AxiosJson />
   </main>
 </template>
+<script setup>
+import AxiosJson from './components/AxiosJson.vue'
+</script>
 
 <style scoped>
 .app-header {

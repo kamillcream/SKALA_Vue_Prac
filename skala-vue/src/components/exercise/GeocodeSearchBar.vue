@@ -1,7 +1,11 @@
 <template>
   <form class="search-bar" @submit.prevent="searchLocation">
-    <input v-model.trim="location" type="search" placeholder="실시간 날씨를 조회할 도시를 입력하세요" />
-    <button type="submit">위치 검색</button>
+    <input
+      v-model.trim="location"
+      type="search"
+      placeholder="실시간 날씨를 조회할 도시를 입력하세요"
+    />
+    <el-button native-type="submit">위치 검색</el-button>
   </form>
   <p v-if="errorMessage" class="search-message search-message--error">{{ errorMessage }}</p>
   <p v-else class="search-message">도시 좌표를 검색해 현재 날씨를 불러옵니다.</p>
@@ -59,7 +63,9 @@ button {
   color: #052e25;
   background: #6ee7b7;
   font-weight: 800;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 button:hover {

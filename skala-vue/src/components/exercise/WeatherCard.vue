@@ -10,13 +10,14 @@
     </p>
     <p v-show="!city.isDetailShow" class="weather-card__hint">상세보기를 눌러 날씨를 확인하세요.</p>
     <div class="weather-card__actions">
-      <button type="button" @click="onSelectCard">즐겨찾기</button>
-      <button type="button" class="secondary" @click="onClickDetail">상세보기</button>
+      <el-button type="button" @click="onSelectCard">즐겨찾기</el-button>
+      <el-button type="button" class="secondary" @click="onClickDetail">상세보기</el-button>
     </div>
   </article>
 </template>
 
 <script setup>
+import { ElButton } from 'element-plus'
 const emit = defineEmits(['select', 'detail'])
 const props = defineProps({
   city: {

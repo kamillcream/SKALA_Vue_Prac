@@ -1,7 +1,7 @@
 <template>
   <form class="search-bar" @submit.prevent="onSearching">
-    <input v-model.trim="searchQuery" type="search" placeholder="도시 또는 날씨를 입력하세요" />
-    <button type="submit">검색</button>
+    <el-input v-model.trim="searchQuery" type="search" placeholder="도시 또는 날씨를 입력하세요" />
+    <el-button native-type="submit">검색</el-button>
   </form>
   <p class="search-result">검색 결과 {{ resultCount }}건</p>
 </template>

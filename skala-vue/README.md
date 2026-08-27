@@ -263,7 +263,15 @@ OpenWeather API 응답에서 사용하는 주요 값은 다음과 같습니다.
 | `clouds.all` | 구름 비율 |
 | `visibility` | 가시거리(m) |
 
-> API 키를 프런트엔드 소스에 직접 작성하면 브라우저에 노출됩니다. 학습 이후에는 `.env`의 `VITE_OPENWEATHER_API_KEY`로 분리하고 키 제한을 설정하거나 백엔드 프록시를 사용하는 것이 좋습니다.
+환경변수는 Vite가 브라우저 코드에 노출할 수 있도록 `VITE_` 접두사를 사용합니다.
+
+```text
+VITE_GEOCODING_API_URL=...
+VITE_WEATHER_API_URL=...
+VITE_WEATHER_API_KEY=...
+```
+
+> `VITE_` 환경변수는 빌드 결과에 포함되므로 비밀정보를 안전하게 숨기는 방법은 아닙니다. API 키 제한을 설정하거나 백엔드 프록시를 사용하는 것이 좋습니다.
 
 ## Vue 학습 예제
 

@@ -9,13 +9,10 @@
   </header>
 
   <main class="app-shell">
-    <!-- <RouterView /> -->
-    <UISample />
+    <RouterView />
   </main>
 </template>
-<script setup>
-import UISample from './components/UISample.vue'
-</script>
+<script setup></script>
 <style scoped>
 .app-header {
   display: flex;

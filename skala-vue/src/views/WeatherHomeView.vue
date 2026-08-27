@@ -19,60 +19,69 @@
             @search="handleSearch"
           />
           <GeocodeSearchBar v-if="mode === 'API 호출'" @search="handleGeoCodeApiSearch" />
-          <div v-if="weather?.main" class="location-result">
-            <header>
-              <div>
-                <p>{{ weather.sys.country }}</p>
-                <h3>{{ weather.name }}</h3>
+          <el-card v-if="weather?.main" class="weather-result" shadow="hover">
+            <template #header>
+              <div class="weather-header">
+                <div>
+                  <el-tag type="info" effect="dark">
+                    {{ weather.sys.country }}
+                  </el-tag>
+
+                  <h2>{{ weather.name }}</h2>
+                </div>
+
+                <el-image
+                  :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`"
+                  :alt="weather.weather[0].description"
+                  fit="contain"
+                />
               </div>
+            </template>
 
-              <img
-                :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`"
-                :alt="weather.weather[0].description"
-              />
-            </header>
+            <div class="weather-current">
+              <el-statistic title="현재 온도" :value="Math.round(weather.main.temp)" suffix="℃" />
 
-            <section>
-              <strong>{{ Math.round(weather.main.temp) }}℃</strong>
-              <p>{{ weather.weather[0].description }}</p>
-              <p>체감온도 {{ Math.round(weather.main.feels_like) }}℃</p>
-            </section>
+              <div class="weather-status">
+                <el-tag type="primary" size="large">
+                  {{ weather.weather[0].description }}
+                </el-tag>
 
-            <dl>
-              <div>
-                <dt>최저 / 최고</dt>
-                <dd>
-                  {{ Math.round(weather.main.temp_min) }}℃ /
-                  {{ Math.round(weather.main.temp_max) }}℃
-                </dd>
+                <el-text type="info"> 체감온도 {{ Math.round(weather.main.feels_like) }}℃ </el-text>
               </div>
+            </div>
 
-              <div>
-                <dt>습도</dt>
-                <dd>{{ weather.main.humidity }}%</dd>
-              </div>
+            <el-divider />
 
-              <div>
-                <dt>풍속</dt>
-                <dd>{{ weather.wind.speed }}m/s</dd>
-              </div>
+            <el-descriptions :column="2" border>
+              <el-descriptions-item label="최저 온도">
+                {{ Math.round(weather.main.temp_min) }}℃
+              </el-descriptions-item>
 
-              <div>
-                <dt>기압</dt>
-                <dd>{{ weather.main.pressure }}hPa</dd>
-              </div>
+              <el-descriptions-item label="최고 온도">
+                {{ Math.round(weather.main.temp_max) }}℃
+              </el-descriptions-item>
 
-              <div>
-                <dt>구름</dt>
-                <dd>{{ weather.clouds.all }}%</dd>
-              </div>
+              <el-descriptions-item label="습도">
+                <el-progress :percentage="weather.main.humidity" :stroke-width="10" />
+              </el-descriptions-item>
 
-              <div>
-                <dt>가시거리</dt>
-                <dd>{{ (weather.visibility / 1000).toFixed(1) }}km</dd>
-              </div>
-            </dl>
-          </div>
+              <el-descriptions-item label="구름">
+                <el-progress :percentage="weather.clouds.all" :stroke-width="10" color="#94a3b8" />
+              </el-descriptions-item>
+
+              <el-descriptions-item label="풍속">
+                {{ weather.wind.speed }}m/s
+              </el-descriptions-item>
+
+              <el-descriptions-item label="기압">
+                {{ weather.main.pressure }}hPa
+              </el-descriptions-item>
+
+              <el-descriptions-item label="가시거리" :span="2">
+                {{ (weather.visibility / 1000).toFixed(1) }}km
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
         </div>
 
         <div class="unit-control">
@@ -106,11 +115,12 @@ import BaseDashboardCard from '@/components/exercise/BaseDashboardCard.vue'
 import SearchBar from '@/components/exercise/SearchBar.vue'
 import WeatherList from '@/components/exercise/WeatherList.vue'
 import GeocodeSearchBar from '@/components/exercise/GeocodeSearchBar.vue'
+import { ElCard, ElTag, ElText, ElImage, ElStatistic } from 'element-plus'
 
 const mode = ref('리스트 검색')
 
 const API_KEY = `111b3fda6bc93704bbe4b4c299176bee`
-const weather = ref([])
+const weather = ref(null)
 
 const router = useRouter()
 const configStore = useConfigStore()
@@ -211,6 +221,10 @@ const toggle = () => {
 }
 
 const modeToggle = () => {
+  filteredWeatherList.value = [...weatherList.value]
+  latlonResult.value = null
+  weather.value = null
+
   if (mode.value === '리스트 검색') mode.value = 'API 호출'
   else if (mode.value === 'API 호출') mode.value = '리스트 검색'
 }

@@ -41,17 +41,64 @@ const onSelectCard = () => {
   border: 1px solid #334155;
   border-radius: 14px;
   background: #0f172a;
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
 }
 
-.weather-card:hover { transform: translateY(-3px); border-color: #64748b; }
-.weather-card--favorite { border-color: #fbbf24; }
-.weather-card__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.weather-card h3 { margin: 0; color: #fff; font-size: 1.15rem; font-weight: 750; }
-.weather-card__detail { display: flex; gap: 10px; align-items: baseline; margin: 18px 0; color: #94a3b8; }
-.weather-card__detail strong { color: #6ee7b7; font-size: 1.8rem; }
-.weather-card__hint { min-height: 50px; margin: 18px 0; color: #64748b; font-size: 0.82rem; }
-.weather-card__actions { display: flex; gap: 8px; }
-button { cursor: pointer; flex: 1; border: 0; border-radius: 8px; padding: 9px; color: #052e25; background: #6ee7b7; font-weight: 750; }
-button.secondary { border: 1px solid #475569; color: #cbd5e1; background: transparent; }
+.weather-card:hover {
+  transform: translateY(-3px);
+  border-color: #64748b;
+}
+.weather-card--favorite {
+  border-color: #fbbf24;
+}
+.weather-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.weather-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 750;
+}
+.weather-card__detail {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 18px 0;
+  color: #94a3b8;
+}
+.weather-card__detail strong {
+  color: #6ee7b7;
+  font-size: 1.8rem;
+}
+.weather-card__hint {
+  min-height: 50px;
+  margin: 18px 0;
+  color: #64748b;
+  font-size: 0.82rem;
+}
+.weather-card__actions {
+  display: flex;
+  gap: 8px;
+}
+button {
+  cursor: pointer;
+  flex: 1;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px;
+  color: #052e25;
+  background: #6ee7b7;
+  font-weight: 750;
+}
+button.secondary {
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  background: transparent;
+}
 </style>

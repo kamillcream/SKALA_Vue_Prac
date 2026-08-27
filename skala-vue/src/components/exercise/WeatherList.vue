@@ -1,19 +1,19 @@
 <template>
-    <ul v-if="props.filteredWeatherList.length" class="weather-list">
-        <li v-for="item in props.filteredWeatherList" :key="item.id">
-          <WeatherCard :city="item" @detail="handleDetailEvent" @select="handleSelectCard" />
-        </li>
-    </ul>
-    <p v-else class="empty-message">검색 결과가 없습니다.</p>
+  <ul v-if="props.filteredWeatherList.length" class="weather-list">
+    <li v-for="item in props.filteredWeatherList" :key="item.id">
+      <WeatherCard :city="item" @detail="handleDetailEvent" @select="handleSelectCard" />
+    </li>
+  </ul>
+  <p v-else class="empty-message">검색 결과가 없습니다.</p>
 </template>
 
 <script setup>
 import WeatherCard from './WeatherCard.vue'
 const props = defineProps({
-    filteredWeatherList: {
-        type: Array,
-        required: true,
-    }
+  filteredWeatherList: {
+    type: Array,
+    required: true,
+  },
 })
 const emit = defineEmits(['select', 'detail'])
 
@@ -24,7 +24,6 @@ const handleDetailEvent = (name) => {
 const handleSelectCard = (name) => {
   emit('select', name)
 }
-
 </script>
 
 <style scoped>
@@ -45,5 +44,4 @@ const handleSelectCard = (name) => {
   color: #94a3b8;
   text-align: center;
 }
-
 </style>

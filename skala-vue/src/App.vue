@@ -10,13 +10,12 @@
 
   <main class="app-shell">
     <!-- <RouterView /> -->
-    <AxiosJson />
+    <UISample />
   </main>
 </template>
 <script setup>
-import AxiosJson from './components/AxiosJson.vue'
+import UISample from './components/UISample.vue'
 </script>
-
 <style scoped>
 .app-header {
   display: flex;
